@@ -6,6 +6,7 @@ public class Article {
 
     public long id;
     public String title;
+    public String content;
     public String hashtag;
 
 
