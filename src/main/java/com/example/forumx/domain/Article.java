@@ -1,12 +1,33 @@
 package com.example.forumx.domain;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 
+//여기서 @Setter 는 전체 필드에 적용하지 않음
+@Getter
+@ToString
+@Table(indexes = {
+        @Index(columnList = "title"),
+        @Index(columnList = "hashtag"),
+        @Index(columnList = "id"),
+        @Index(columnList = "content")
+})
+@Entity
 public class Article {
 
+    @Id    // JPA Persistence Context 가 영속성을 연속화 할 때 자동으로 부여해주는 번호임
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
+
+    @Setter  //특정 필드에만 Set 가능하도록
     public String title;
+    @Setter
     public String content;
+    @Setter
     public String hashtag;
 
 
