@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
@@ -39,9 +43,14 @@ public class Article {
     (캡슐화는 객체 내부의 데이터나 상태를 외부에서 직접 접근하지 못하게 하고, 의도된 방식으로만 접근하도록 제한하는 것)
     */
 
+    //JPA Auditing 어노테이션 사용
+    @CreatedDate
     private LocalDateTime createdAt;
-    private String createdBy;
+    @CreatedBy
+    private String createdBy; //인증기능을 사용하거나 현재 사용하를 모르는 상태임 -> 이름 정보를 넣어주기 위해 config 설정
+    @LastModifiedDate
     private LocalDateTime modifiedAt;
+    @LastModifiedBy
     private String modifiedBy;
 
 }
