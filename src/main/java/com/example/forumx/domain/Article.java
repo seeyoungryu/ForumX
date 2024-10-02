@@ -28,8 +28,10 @@ public class Article {
     public long id;
 
     @Setter  //특정 필드에만 Set 가능하도록
+    @Column(nullable = false) // 컬럼의 nullable 기본값이 true (비어있어도 되면 생략해도됨)
     public String title;
     @Setter
+    @Column(nullable = false, length = 10000)
     public String content;
     @Setter
     public String hashtag;
@@ -44,12 +46,17 @@ public class Article {
 
     //JPA Auditing 어노테이션 사용
     @CreatedDate
-    private LocalDateTime createdAt;
+    @Column(nullable = false)
+    private LocalDateTime createdAt; //생성일시
     @CreatedBy
-    private String createdBy; //인증기능을 사용하거나 현재 사용하를 모르는 상태임 -> 이름 정보를 넣어주기 위해 config 설정
+    @Column(nullable = false, length = 100)
+    private String createdBy; //생성자
+    //인증기능을 사용하거나 현재 사용하를 모르는 상태임 -> 이름 정보를 넣어주기 위해 config 설정
     @LastModifiedDate
-    private LocalDateTime modifiedAt;
+    @Column(nullable = false)
+    private LocalDateTime modifiedAt; //수정일시
     @LastModifiedBy
-    private String modifiedBy;
+    @Column(nullable = false, length = 100)
+    private String modifiedBy; //수정자
 
 }
