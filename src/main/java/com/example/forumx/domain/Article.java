@@ -18,8 +18,8 @@ import java.util.Objects;
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
-        @Index(columnList = "id"),
-        @Index(columnList = "content")
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy ")
 })
 @Entity
 public class Article {
