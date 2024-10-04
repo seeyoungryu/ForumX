@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 //여기서 @Setter 는 전체 필드에 적용하지 않음
 @Getter
@@ -25,7 +26,7 @@ public class Article {
 
     @Id    // JPA Persistence Context 가 영속성을 연속화 할 때 자동으로 부여해주는 번호임
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long id;
+    public Long id;
 
     @Setter  //특정 필드에만 Set 가능하도록
     @Column(nullable = false) // 컬럼의 nullable 기본값이 true (비어있어도 되면 생략해도됨)
@@ -102,6 +103,19 @@ public class Article {
      */
 
 
+    //동등성 비교 (-> 여기서는 not null (id 값 체크 안해서 Objects.equals 의 경우 null 인 경우 포함하게 됨))
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Article article)) return false;
+        return id !== null && == id.equals(article.id);
+        // -> 아직 영속화 되지 않은 모든 엔티티는 동등성 검사를 탈락함을 의미
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
 
 
