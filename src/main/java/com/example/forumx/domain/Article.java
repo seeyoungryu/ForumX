@@ -108,7 +108,7 @@ public class Article {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Article article)) return false;
-        return id !== null && == id.equals(article.id);
+        return id != null && id.equals(article.id);
         // -> 아직 영속화 되지 않은 모든 엔티티는 동등성 검사를 탈락함을 의미
     }
 
