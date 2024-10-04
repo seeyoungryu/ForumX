@@ -80,4 +80,29 @@ public class Article {
 
      */
 
+    //기본 생성자
+    private Article() {
+    }
+
+    //기본 필드 (메타데이터 제외)
+    private Article(String title, String content, String hashtag) {
+        this.title = title;
+        this.content = content;
+        this.hashtag = hashtag;
+    }
+
+    //*정적 팩토리 메소드*
+    public static Article of(String title, String content, String hashtag) {
+        return new Article(title, content, hashtag);
+    }
+
+    /* -> of :  정적 팩토리 메서드, Article 객체를 생성하는 역할
+    정적 팩토리 메서드는 객체를 생성하기 위한 대체 방법입니다. << new 키워드로 직접 객체를 생성하는 대신, >> 정적 메서드를 통해 객체를 생성하는 방식입니다.
+    정적 팩토리 메서드는 생성자와 유사한 역할을 하지만, 이름을 자유롭게 지을 수 있고, 필요에 따라 객체 생성 방식을 유연하게 제어할 수 있습니다.(가독성, 객체 생성을 유연하게 제어)
+     */
+
+
 }
+
+
+
