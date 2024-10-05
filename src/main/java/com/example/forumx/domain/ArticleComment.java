@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Getter
@@ -57,5 +58,33 @@ public class ArticleComment {
     protected ArticleComment() {
     }
 
+    private ArticleComment(Article article, String content) {
+        this.article = article;
+        this.content = content;
+    }
+
+    public static ArticleComment of(Article article, String content) {
+        return new ArticleComment(article, content);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ArticleComment that)) return false;
+        return id != null && id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+
+    /* 접근제어자
+    public(완전공개 ~ 어디서나 해당 클래스, 메서드, 필드 모든곳에 접근 가능)
+    protected(같은 패키지 + 상속받은 클래스에서 접근 가능)
+    package-private(같은 패키지 내에서 접근 가능) -> 디폴트 값 접근 제어 (명시x)
+    private *가장 제한적* (같은 클래스 내에서만 접근 가능)
+     */
 
 }
