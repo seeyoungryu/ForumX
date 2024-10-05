@@ -63,16 +63,19 @@ public class ArticleComment {
         this.content = content;
     }
 
+    //정적 팩토리 메소드 of : 객체를 생성하기 위한 대체 방법
     public static ArticleComment of(Article article, String content) {
         return new ArticleComment(article, content);
     }
 
+    //동등성 비교 (-> 여기서는 not null (id 값 체크 안해서 Objects.equals 의 경우 null 인 경우 포함하게 됨))
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ArticleComment that)) return false;
         return id != null && id.equals(that.id);
     }
+
 
     @Override
     public int hashCode() {
