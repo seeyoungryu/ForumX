@@ -50,4 +50,12 @@ public class ArticleComment {
     @LastModifiedBy
     @Column(nullable = false, length = 100)
     private String modifiedBy; //수정자
+
+
+    // <객체 생성 관련>
+    //기본 생성자 (롬복 ->  @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    protected ArticleComment() {
+    }
+
+
 }
