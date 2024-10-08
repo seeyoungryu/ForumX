@@ -59,6 +59,20 @@ public class Article {
      */
 
 
+
+    /* @ToString.Exclude - 순환참조 설명
+
+    @ToString.Exclude: 순환 참조 문제를 방지하기 위해 articleComments 필드를 toString()에서 제외합니다.
+    순환 참조 문제는 두 엔티티가 서로를 참조할 때 무한 루프에 빠질 수 있는 상황을 말합니다.
+    예를 들어, Article 객체가 ArticleComment를 참조하고, ArticleComment 객체가 다시 Article을 참조하는 경우,
+    toString() 호출 시 무한 루프가 발생하여 프로그램이 멈출 수 있습니다.
+
+    참고 : 댓글은 게시글과 연관된 일대다 관계입니다.
+    이 관계에서 toString()을 호출할 때 순환 참조 문제를 방지하기 위해
+    댓글(articleComments)을 toString() 메서드에서 제외하여 안전한 객체 사용을 보장한 것입니다.
+     */
+
+
     //JPA Auditing 어노테이션 사용
     @CreatedDate
     @Column(nullable = false)
