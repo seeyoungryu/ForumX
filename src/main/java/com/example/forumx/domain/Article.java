@@ -40,6 +40,7 @@ public class Article {
 
 
     //(댓글 - 연관관계 매핑을 위한 코드)
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
       /*
