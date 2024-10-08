@@ -20,6 +20,17 @@ class JpaRepositoryTest {
     @Autowired
     private ArticleCommentRepository articleCommentRepository;
 
+
+
+//  < @BeforeEach 사용하여 데이터 초기화 하는 경우 >
+//    <테스트 전 데이터 초기화 시>
+//    @BeforeEach               : 각 테스트 메서드가 실행되기 전 호출됨
+//    void setUp() {            : setUp(): 테스트 전에 "Sample Title"을 가진 Article 객체를 저장
+//        articleRepository.save(Article.of("Sample Title", "Sample Content", "#sample"));
+//    }                         : Article.of(): 정적 팩토리 메서드를 사용해 Article 객체를 생성하고 저장
+//                                -> Article 클래스에서 정의된 of() 메서드를 통해 객체를 생성
+
+
     @DisplayName("select test")
     @Test
     void givenTestData_whenSelecting_thenWorksFine() {          //given_when_then 테스트 패턴
