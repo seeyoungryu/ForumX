@@ -10,7 +10,9 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 //여기서 @Setter 는 전체 필드에 적용하지 않음
 @Getter
@@ -24,27 +26,26 @@ import java.util.Objects;
 @Entity
 public class Article {
 
-    @Id    // JPA Persistence Context 가 영속성을 연속화 할 때 자동으로 부여해주는 번호임
+    //연관관계 매핑을 위한 코드 (양방향 바인딩)
+    private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
+    // id -> JPA Persistence Context 가 영속성을 연속화 할 때 자동으로 부여해주는 번호임
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-
     @Setter  //특정 필드에만 Set 가능하도록
     @Column(nullable = false) // 컬럼의 nullable 기본값이 true (비어있어도 되면 생략해도됨)
     public String title;
     @Setter
     @Column(nullable = false, length = 10000)
     public String content;
-    @Setter
-    public String hashtag;
-
-
     /* 메타데이터(데이터에 대한 데이터) :
     메타데이터는 기록의 생성 및 수정에 대한 추적 정보를 저장하고,
     시스템이 데이터의 변경 사항을 관리하는 데 유용한 정보를 제공하는 역할
     -> 메타데이터를 private로 설정하는 이유는 객체의 캡슐화(encapsulation) 원칙을 지키기 위해서입니다.
     (캡슐화는 객체 내부의 데이터나 상태를 외부에서 직접 접근하지 못하게 하고, 의도된 방식으로만 접근하도록 제한하는 것)
     */
-
+    @Setter
+    public String hashtag;
     //JPA Auditing 어노테이션 사용
     @CreatedDate
     @Column(nullable = false)
@@ -59,6 +60,9 @@ public class Article {
     @LastModifiedBy
     @Column(nullable = false, length = 100)
     private String modifiedBy; //수정자
+
+
+
 
 
     /* 기본생성자 - protected
