@@ -40,7 +40,9 @@ public class Article {
 
 
     //(댓글 - 연관관계 매핑을 위한 코드)
+    @OrderBy("id")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
       /*
@@ -72,6 +74,7 @@ public class Article {
     @Column(nullable = false, length = 100)
     private String modifiedBy; //수정자
 
+
        /* 메타데이터(데이터에 대한 데이터) :
     메타데이터는 기록의 생성 및 수정에 대한 추적 정보를 저장하고,
     시스템이 데이터의 변경 사항을 관리하는 데 유용한 정보를 제공하는 역할
@@ -81,7 +84,7 @@ public class Article {
 
 
     //기본 생성자
-    private Article() {
+    protected Article() {
     }
 
     //기본 필드 (메타데이터 제외)
@@ -90,6 +93,7 @@ public class Article {
         this.content = content;
         this.hashtag = hashtag;
     }
+
 
     //*정적 팩토리 메소드*
     public static Article of(String title, String content, String hashtag) {
