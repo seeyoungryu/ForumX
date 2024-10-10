@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -18,8 +19,11 @@ import java.util.Set;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy ")
 })
+@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Article {
+public class Article extends AuditingFields {    //추출한 중복 필드 (여기서는 메타데이터) *상속으로 연결*
+    // -> AuditingFields 안에 있는 필드 네 개가 모두 현재 필드의 일부가 됨
+
 
     @Id // id -> JPA Persistence Context 가 영속성을 연속화 할 때 자동으로 부여해주는 번호임
     @GeneratedValue(strategy = GenerationType.IDENTITY)
