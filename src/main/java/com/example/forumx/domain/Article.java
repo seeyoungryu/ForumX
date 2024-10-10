@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -19,7 +18,7 @@ import java.util.Set;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy ")
 })
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class)    //AuditingFields 클래스로 이벤트 리스너 추출
 @Entity
 public class Article extends AuditingFields {    //추출한 중복 필드 (여기서는 메타데이터) *상속으로 연결*
     // -> AuditingFields 안에 있는 필드 네 개가 모두 현재 필드의 일부가 됨
