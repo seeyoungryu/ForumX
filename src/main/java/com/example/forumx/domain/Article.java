@@ -4,12 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -72,7 +67,7 @@ public class Article {
     댓글(articleComments)을 toString() 메서드에서 제외하여 안전한 객체 사용을 보장한 것입니다.
      */
 
-
+/* 필드 추출을 위해 주석처리
     //JPA Auditing 어노테이션 사용
     @CreatedDate
     @Column(nullable = false)
@@ -87,6 +82,7 @@ public class Article {
     @LastModifiedBy
     @Column(nullable = false, length = 100)
     private String modifiedBy; //수정자
+ */
 
 
        /* 메타데이터(데이터에 대한 데이터) :
