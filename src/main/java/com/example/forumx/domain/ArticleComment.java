@@ -22,7 +22,7 @@ import java.util.Objects;
 })
 //@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ArticleComment {
+public class ArticleComment extends AuditingFields {  //AuditingFiels 상속
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
