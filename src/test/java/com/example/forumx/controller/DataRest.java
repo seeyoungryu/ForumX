@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /*
 @WebMvcTest : RESTful API의 동작을 확인할 때 유용, 슬라이스 테스트임
-슬라이스 테스트: 특정 레이어만 테스트하는 방식,컨트롤러 레이어만 테스트하는 슬라이스 테스트를 의미
+슬라이스 테스트: 특정 레이어만 테스트하는 방식,컨트롤러 레이어만 테스트하는 테스트를 의미(컨트롤러 외에 Bean 들을 로드하지 않음)
 -> 서비스나 리포지토리 같은 레이어는 제외하고 <웹 레이어>만 테스트
  */
 @WebMvcTest
