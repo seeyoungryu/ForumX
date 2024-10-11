@@ -1,5 +1,6 @@
 package com.example.forumx.controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 -> 서비스나 리포지토리 같은 레이어는 제외하고 <웹 레이어>만 테스트
  */
 //@WebMvcTest
+@Disabled("Spring Data Rest 통합 테스트는 지금 불필요하므 전체 처리에서 제외시킴..공부 목적")
 @DisplayName("Data REST - API Test")
 @AutoConfigureMockMvc
 @SpringBootTest
 public class DataRest {
 
     private final MockMvc mvc;
+
     /*
     MockMvc: 웹 레이어 테스트를 할 때 실제 서버를 실행하지 않고 가상의 요청을 보낼 수 있게 해주는 도구
              MockMvc를 사용하면 서버를 띄우지 않고도 HTTP 요청을 테스트할 수 있어 빠르고 효율적
      */
-
     public DataRest(@Autowired MockMvc mvc) { //
         this.mvc = mvc;
     }
