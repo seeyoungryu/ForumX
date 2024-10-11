@@ -1,12 +1,16 @@
 package com.example.forumx.controller;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -16,7 +20,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 슬라이스 테스트: 특정 레이어만 테스트하는 방식,컨트롤러 레이어만 테스트하는 테스트를 의미(컨트롤러 외에 Bean 들을 로드하지 않음)
 -> 서비스나 리포지토리 같은 레이어는 제외하고 <웹 레이어>만 테스트
  */
-@WebMvcTest
+//@WebMvcTest
+@DisplayName("Data REST - API Test")
+@AutoConfigureMockMvc
+@SpringBootTest
 public class DataRest {
 
     private final MockMvc mvc;
@@ -28,17 +35,20 @@ public class DataRest {
     public DataRest(@Autowired MockMvc mvc) { //
         this.mvc = mvc;
     }
+
     //@Autowired: <MockMvc 객체>를 자동으로 스프링이 주입함, 직접 객체를 만들지 않아도 됨
-
-
+    @DisplayName("[api] 게시글 리스트 조회")
+    @Transactional
+    //인테그레이션 테스트이므로 디비에 영향을 주기 때문에 Transactional 로 관리 함 (Trnasaction Context가 열리고 닫히는걸 로그에서 확인 가능함)
     @Test
-    void test() throws Exception {
+    void givenNothing_whenRequestArticles_thenReturnArticlseWithJsonResponse() throws Exception {
         //Given
 
         //When , Then
         mvc.perform(get("/api.articles"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.valueOf("application/hal+json")));
+                .andExpect(content().contentType(MediaType.valueOf("application/hal+json")))
+                .andDo(print());
     }
 
     /*
