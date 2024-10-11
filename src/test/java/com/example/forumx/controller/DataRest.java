@@ -25,7 +25,6 @@ public class DataRest {
              MockMvc를 사용하면 서버를 띄우지 않고도 HTTP 요청을 테스트할 수 있어 빠르고 효율적
      */
 
-
     public DataRest(@Autowired MockMvc mvc) { //
         this.mvc = mvc;
     }
