@@ -72,3 +72,8 @@ public class DataRest {
      */
 
 }
+
+
+/*
+API - 게시글,댓글 데이터는 Spring Data REST로 서비스하고, 해당  API의 존재 여부만 확인하게끔 통합 테스트를 작성
+ */
