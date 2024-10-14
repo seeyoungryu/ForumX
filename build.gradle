@@ -68,7 +68,7 @@ tasks.named('test') {
 // QueryDSL 설정부
 def generated = "src/main/generated"
 
-// querydsl QClass 파일 생성 위치를 지정
+// querydsl QClass 파일 생성 위치를 지정 (Gradle 과 인텔리제이 디렉토리 경로를 동일하게 하기 위해 경로 지정)
 tasks.withType(JavaCompile) {
     options.getGeneratedSourceOutputDirectory().set(file(generated))
 }

@@ -2,6 +2,7 @@ package com.example.forumx.repository;
 
 import com.example.forumx.domain.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
@@ -13,7 +14,11 @@ JpaRepository는 인터페이스로 선언해야 Spring Data JPA가 제공하는
  */
 
 @RepositoryRestResource
-public interface ArticleRepository extends JpaRepository<Article, Long> {
+public interface ArticleRepository
+        extends JpaRepository<Article, Long>,
+        QuerydslPredicateExecutor<Article>
+//        QuerydslBinderCustomizer<QArticle>
+{
 }
 
 
