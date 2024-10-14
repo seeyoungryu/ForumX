@@ -12,8 +12,13 @@ public interface ArticleCommentRepository
         extends JpaRepository<ArticleComment, Long>,
         QuerydslPredicateExecutor<Article> {
 
-    default void customize(QuerydslBindings bindings, QArticle root) {
+
+    default void customize(QuerydslBindings querydslBindings, ArticleComment articleComment) {
+        querydslBindings.excludeUnlistedProperties(true);
     }
+
+    // QueryDSL에 특화된 커스터마이징 메서드, 쿼리를 사용자 정의 할 때만 사용함
+
 
 }
 
